@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -9,22 +7,19 @@ public class Main {
         System.out.println("Le déménagement va commencer, il y a 34 cartons à déplacer.");
 
         int totalOfBoxes = 34;
-        int remainingBoxes = totalOfBoxes;
-        int truckCapacity = 9;
-        int roundNumber = 1;
         int truckLoad;
+        int roundNumber = 0;
 
-        while (remainingBoxes > 0) {
+
+        while (totalOfBoxes > 0) {
+            if (totalOfBoxes >= 9) {
+                truckLoad = 9;
+            } else {
+                truckLoad = totalOfBoxes;
+            }
+            totalOfBoxes = totalOfBoxes - truckLoad;
             roundNumber++;
-            remainingBoxes = remainingBoxes - truckCapacity;
-            if (remainingBoxes > 0) {
-                truckLoad = truckCapacity;
-                System.out.println("Tour n° " + roundNumber + " : Un voyage de " + truckLoad + " cartons, il reste encore " + remainingBoxes + " cartons à déménager.");
-            }
-            if (remainingBoxes <= 0){
-                truckLoad = totalOfBoxes % truckCapacity;
-                System.out.println("Tour n° " + roundNumber + " : Dernier chargement, un voyage de " + truckLoad + " cartons , tous les cartons sont récupérés !");
-            }
+            System.out.println("Chargement n° " + roundNumber + " : un voyage de " + truckLoad + " cartons.");
         }
     }
 }

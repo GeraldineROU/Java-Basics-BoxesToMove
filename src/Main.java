@@ -9,16 +9,21 @@ public class Main {
         System.out.println("Le déménagement va commencer, il y a 34 cartons à déplacer.");
 
         int totalOfBoxes = 34;
+        int remainingBoxes = totalOfBoxes;
         int truckCapacity = 9;
         int roundNumber = 1;
+        int truckLoad;
 
-        while (totalOfBoxes > 0) {
+        while (remainingBoxes > 0) {
             roundNumber++;
-            totalOfBoxes = totalOfBoxes - truckCapacity;
-            if (totalOfBoxes > 0) {
-                System.out.println("Tour n° " + roundNumber + " : Le camion récupère son chargement, il reste encore " + totalOfBoxes + " cartons à déménager.");
-            } else {
-                System.out.println("Tour n° " + roundNumber + " : Dernier chargement, tous les cartons sont récupérés !");
+            remainingBoxes = remainingBoxes - truckCapacity;
+            if (remainingBoxes > 0) {
+                truckLoad = truckCapacity;
+                System.out.println("Tour n° " + roundNumber + " : Un voyage de " + truckLoad + " cartons, il reste encore " + remainingBoxes + " cartons à déménager.");
+            }
+            if (remainingBoxes <= 0){
+                truckLoad = totalOfBoxes % truckCapacity;
+                System.out.println("Tour n° " + roundNumber + " : Dernier chargement, un voyage de " + truckLoad + " cartons , tous les cartons sont récupérés !");
             }
         }
     }
